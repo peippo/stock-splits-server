@@ -52,7 +52,27 @@ function getByQuarter(params, page = 1) {
 	};
 }
 
+function getByMonth(params, ticker = "") {
+	let { year, month } = params;
+
+	month = month.length === 1 ? `0${month}` : month;
+	let query = `SELECT * FROM splits WHERE execution_date >= '${year}-${month}-01' AND execution_date <= '${year}-${month}-31'`;
+
+	if (ticker) {
+		query += ` AND ticker = '${ticker}'`;
+	}
+
+	query += `ORDER BY execution_date`;
+
+	const data = db.query(query, []);
+
+	return {
+		data,
+	};
+}
+
 module.exports = {
 	getByYear,
 	getByQuarter,
+	getByMonth,
 };
