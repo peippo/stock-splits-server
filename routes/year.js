@@ -8,7 +8,7 @@ router.get("/", function (req, res, next) {
 	};
 
 	try {
-		res.json(splits.getByYear(params, req.query.page));
+		res.json(splits.getByYear(params, req.query.page, req.query.ticker));
 	} catch (err) {
 		console.error(`Error while getting data `, err.message);
 		next(err);

@@ -9,8 +9,8 @@ app.get("/", (req, res) => {
 	res.json({ message: "alive" });
 });
 
-app.use("/year/:year", yearRouter);
-app.use("/year/:year/:quarter", quarterRouter);
+app.use("/splits/:year", yearRouter);
+app.use("/splits/:year/quarter/:quarter", quarterRouter);
 app.use("/splits/:year/month/:month", monthRouter);
 
 app.listen(port, () => {
